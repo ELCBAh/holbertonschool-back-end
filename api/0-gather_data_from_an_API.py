@@ -4,17 +4,23 @@ import requests
 import sys
 
 
-if __name__ == "__main__":
+def main():
+    """Prints info about employee"""
     user_id = sys.argv[1]
-    user = "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
-    todos = "https://jsonplaceholder.typicode.com/todos/?userId={}".format(
+    user = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
+    todos = 'https://jsonplaceholder.typicode.com/todos/?userId={}'.format(
         user_id)
-    user_info = requests.get(user).json()
-    user_name = user_info.get("username")
-    todo_list = requests.get(todos).json()
-    completed = [todo for todo in todo_list if todo.get("completed")]
-    print("Employee {} is done with tasks({}/{}):".format(user_name,
-                                                          len(completed),
-                                                          len(todo_list)))
-    for todo in completed:
-        print("\t {}".format(todo.get("title")))
+    user_name = requests.get(user).json().get('name')
+    request_todo = requests.get(todos).json()
+    tasks = [task.get('title')
+             for task in request_todo if task.get('completed') is True]
+
+    print('Employee {} is done with tasks({}/{}):'.format(user_name,
+                                                          len(tasks),
+                                                          len(request_todo)))
+    print('\n'.join('\t {}'.format(task) for task in tasks))
+
+
+if __name__ == "__main__":
+    if len(sys.argv) == 2:
+        main()

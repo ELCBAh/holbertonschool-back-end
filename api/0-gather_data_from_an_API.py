@@ -6,6 +6,7 @@ from django.conf.urls import url
 
 
 if __name__ == "__main__":
+    """module not documented error"""
     url = "https://jsonplaceholder.typicode.com/"
     user = requests.get(url + "users/{}".format(sys.argv[1])).json()
     username = user.get("username")

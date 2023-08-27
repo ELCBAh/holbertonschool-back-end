@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Lists all tasks from a given employee ID."""
-import requests, sys
+import requests
+import sys
 
 
 if __name__ == "__main__":
@@ -8,7 +9,7 @@ if __name__ == "__main__":
     user = requests.get(url + "users/{}".format(sys.argv[1])).json()
     todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
 
-    completed = [todo for todo in todos if todo.get("completed")]
+    completed = [todo for todo in todos if todo.get("completed") is True]
     print("Employee {} is done with tasks({}/{}):".format(user.get("name"),
                                                           len(completed),
                                                           len(todos)))

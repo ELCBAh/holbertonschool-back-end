@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Lists all tasks from a given employee ID in CSV format."""
-import requests, sys, csv
+import csv
+import requests
+import sys
 
 
 if __name__ == "__main__":
@@ -10,8 +12,8 @@ if __name__ == "__main__":
     username = user.get("username")
     todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
 
-    completed = [todo for todo in todos if todo.get("completed")]
-    print("Employee {} is done with tasks({}/{}):".format(user.get("name"),
-                                                          len(completed),
-                                                          len(todos)))
-    [print("\t {}".format(todo.get("title"))) for todo in completed]
+    with open("{}.csv".format(usr_id), "w") as csvfile:
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+        for task in todos:
+            writer.writerow([usr_id, username, task.get("completed"),
+                             task.get("title")])

@@ -8,7 +8,7 @@ def main():
     """Prints info about employee"""
     user_id = sys.argv[1]
     user = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
-    todos = 'https://jsonplaceholder.typicode.com/todos/?userId={}'.format(
+    todos = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(
         user_id)
     user_name = requests.get(user).json().get('name')
     request_todo = requests.get(todos).json()

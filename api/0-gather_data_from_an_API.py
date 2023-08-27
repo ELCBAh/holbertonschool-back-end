@@ -9,8 +9,8 @@ if __name__ == "__main__":
         sys.exit(1)
 
     user_id = int(sys.argv[1])
-    todos_url = "https://jsonplaceholder.typicode.com/todos?userId=".format(user_id)
-    user_url = "https://jsonplaceholder.typicode.com/users/".format(user_id)
+    todos_url = f"https://jsonplaceholder.typicode.com/todos?userId={user_id}"
+    user_url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
     todos_response = requests.get(todos_url)
     todos_data = todos_response.json()
     user_response = requests.get(user_url)

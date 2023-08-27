@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Lists all tasks from a given employee ID in CSV format."""
-import requests, sys, csv
+import csv
+import requests
+import sys
 
 
 if __name__ == "__main__":

@@ -2,7 +2,6 @@
 """Lists all tasks from a given employee ID."""
 import requests
 import sys
-from django.conf.urls import url
 
 
 if __name__ == "__main__":

@@ -9,7 +9,8 @@ if __name__ == "__main__":
     users = requests.get(url + "users").json()
     with open("todo_all_employees.json", "w") as f:
         for user in users:
-            todo = requests.get(url + "todos", params={"userId": user["id"]}).json()
+            todo = requests.get(url + "todos",
+                                params={"userId": user["id"]}).json()
             user["todos"] = todo
             f.write(json.dumps(user))
             f.write("\n")
